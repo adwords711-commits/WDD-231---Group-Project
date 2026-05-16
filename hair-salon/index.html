@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Hair Salon: expert haircuts, balayage, and curly hair care">
+    <meta name="author" content="Jorge Gonzales">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Hair Salon | Ashburn, VA">
+    <meta property="og:description" content="Experience personalized haircuts, balayage, and curly hair care at Jhovanna's Hair Salon!">
+    <meta property="og:url" content="https://adwords711-commits.github.io/wdd131/hair-salon/services">
+    <link rel="icon" href="favicon.ico">
+
+    <title>Salon Services</title>
+    <link rel="stylesheet" href="site-plan.css">
+    <link rel="stylesheet" href="styles.css">
+     
+</head>
+<body class="about-me-page">
+    <div id="content">
+        <header>
+            <a id="logo_link" href="index.html">
+                <img class="logo" src="images/Jhovannas-Logo.png" alt="Business Logo">
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+            </nav>
+        </header>
+        <div id="hero">
+            <div id="hero-box">
+                <img id="hero-img" src="images/hero-image.jpg" alt="about me teal and yellow background img">
+            </div>
+
+            <div id="hero-msg">
+                <div class="button-box">
+                    <a class="cta-button" href="services.html">View Services</a>
+                </div>
+            </div>
+        </div>
+        <h1>Full Service Hair Salon</h1>
+        <main class="home-page-grid">
+            
+            
+            <img id="balayageImg" class="modal-trigger" src="images/balayage.jpg" alt="Balayage hair highlights on long hair">
+             
+            
+            <section class="home-page-text-1">
+                <h2>What We Offer</h2>
+                <p>We are passionate about hair, and that passion is reflected in every client we serve. Through ongoing education, our stylists stay updated on the latest trends, 
+				styles, and coloring techniques to deliver the results you’re looking for</p>
+            </section>
+            
+            <img id="haircutImg" class="modal-trigger" src="images/Untitled-2.jpg" alt="Mens's haircut style at the salon">
+            
+            <section class="home-page-text-2">
+                <h2>Welcome to Jhovannas</h2>
+                <p>Welcome to JHOVANNAS HAIR SALON, where your hair is cared for and styled by experienced professionals who are dedicated to helping you look and feel your best. From the moment you walk 
+				through our doors, our goal is to provide a relaxing and welcoming environment where you can enjoy personalized service and attention. We specialize in a variety of services, including precision haircuts, 
+				custom color, balayage, and treatments designed to keep your hair healthy, vibrant, and full of life. Our stylists stay up to date with the latest trends and techniques through continuous education, 
+				ensuring you receive modern, high-quality results every time. Whether you’re looking for a simple refresh or a complete transformation, we take the time to understand your style and bring your vision to 
+				life with care and creativity.</p>
+                
+            </section>   
+            
+            <section class="contact-form-1">
+                <h2>CONTACT US</h2>
+                <div id="background"></div>
+                <div id="feedback"></div>
+                <form action="/my-handling-form-page" method="post">
+                <p>
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" placeholder="Your name" required>
+                </p>
+                <p>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" placeholder="name@example.com" required>
+                </p>
+                <p>
+                    <label for="msg">Message:</label>
+                    <textarea id="msg" name="message" placeholder="Write your message..." required></textarea>
+                </p>
+                <p class="button-1">
+                <button type="submit">Send your message</button>
+                </p>
+                </form>
+            </section>
+            <script>
+                const form = document.querySelector('.contact-form-1 form');
+                const feedback = document.getElementById('feedback');
+
+                form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                feedback.textContent = "Thank you! Your message has been sent.";
+                form.reset(); // clear all fields
+                });
+                </script>        
+        </main>
+        
+        
+        <footer>
+        <p>
+            <a href="https://www.jhovanashairsalon.com" title="Salon Website">www.jhovannashairsalon.com</a> |
+            
+        </p>
+        <p>© Jhovannas Hair Salon</p>
+        <div class="social">
+            <!-- Social media icons -->
+            <a href="#" aria-label="Visit our Instagram page"><img src="images/instagram_icon.svg" alt="Instagram Icon"></a>
+            <a href="#" aria-label="Visit our YouTube channel"><img src="images/youtube_icon.svg" alt="YouTube Icon"></a>
+            <a href="#" aria-label="Visit our Pinterest page"><img src="images/pinterest_icon.svg" alt="Pinterest Icon"></a>
+        </div>
+    </footer>
+    </div>
+
+    <script>
+        // get the feedback div element so we can do something with it.
+        const feedbackElement = document.getElementById('feedback');
+        // get the form so we can read what was entered in it.
+        const formElement = document.forms[0];
+        // add a 'listener' to wait for a submission of our form. When that happens run the code below.
+        formElement.addEventListener('submit', function(e) {
+            // stop the form from doing the default action.
+            e.preventDefault();
+            // set the contents of our feedback element to a message letting the user know the form was submitted successfully.
+            feedbackElement.innerHTML = 'Hello ' + formElement.name.value + '! Thank you for your message. We will get back with you as soon as possible!';
+            // make the feedback element visible.
+            feedbackElement.style.display = "block";
+            // add a class to move everything down so our message doesn't cover it.
+            document.body.classList.toggle('moveDown');
+        });
+    </script>
+
+</body>
+</html>
