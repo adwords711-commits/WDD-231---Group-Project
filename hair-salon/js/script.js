@@ -75,13 +75,26 @@ function getPrice(service, length) {
 // DOM elements
 const serviceContainer = document.querySelector("#service-container");
 const categoryDropdown = document.querySelector("#category");
-const feedbackElement = document.getElementById('feedback');
+const feedbackElement = document.getElementById("feedback");
 const formElement = document.querySelector(".contact-form-1 form");
 
 if (formElement && feedbackElement) {
   formElement.addEventListener("submit", function (e) {
     e.preventDefault();
+
     const name = document.querySelector("#name").value;
+    const email = document.querySelector("#email").value;
+    const msg = document.querySelector("#msg").value;
+
+    const userMessage = {
+      name: name,
+      email: email,
+      message: msg
+    };
+
+    // saves name in localStorage
+    localStorage.setItem("userMessage", JSON.stringify(userMessage));
+
     feedbackElement.innerHTML =
       "Hello " + name + "! Thank you for your message. We will get back with you as soon as possible!";
     feedbackElement.style.display = "block";
@@ -92,6 +105,8 @@ if (formElement && feedbackElement) {
 
 // Render service cards
 function renderServices(serviceList) {
+  if (!serviceContainer) return;
+
   serviceContainer.innerHTML = "";
   serviceList.forEach(service => {
     serviceContainer.innerHTML += serviceTemplate(service);
@@ -142,29 +157,33 @@ if (categoryDropdown) {
 }
 
 // Initial render
-renderServices(services);
+if (serviceContainer) {
+  renderServices(services);
+}
 
-serviceContainer.addEventListener('change', function(e) {
-  if (!e.target.classList.contains('hair-length')) return;
+if (serviceContainer) {
+  serviceContainer.addEventListener('change', function(e) {
+    if (!e.target.classList.contains('hair-length')) return;
 
-  const select = e.target;
-  const serviceCard = select.closest('.service-card');
-  const priceElement = serviceCard.querySelector('.service-price');
-  const durationElement = serviceCard.querySelector('.service-duration');
-  const selectBtn = serviceCard.querySelector('.select-service-btn');
+    const select = e.target;
+    const serviceCard = select.closest('.service-card');
+    const priceElement = serviceCard.querySelector('.service-price');
+    const durationElement = serviceCard.querySelector('.service-duration');
+    const selectBtn = serviceCard.querySelector('.select-service-btn');
 
-  const selectedLength = select.value;
-  if (!selectedLength) return;
+    const selectedLength = select.value;
+    if (!selectedLength) return;
 
-  const serviceObj = services.find(s => s.name === serviceCard.querySelector('h2').textContent);
-  const dynamicPrice = getPrice(serviceObj, selectedLength);
+    const serviceObj = services.find(s => s.name === serviceCard.querySelector('h2').textContent);
+    const dynamicPrice = getPrice(serviceObj, selectedLength);
 
-  priceElement.innerHTML = `<strong>Price:</strong> $${dynamicPrice}`;
-    durationElement.classList.remove('hidden');
-  priceElement.classList.remove('hidden');
-  selectBtn.classList.remove('hidden');
+    priceElement.innerHTML = `<strong>Price:</strong> $${dynamicPrice}`;
+      durationElement.classList.remove('hidden');
+    priceElement.classList.remove('hidden');
+    selectBtn.classList.remove('hidden');
 
-  selectBtn.onclick = () => {
-    alert("Thank you for your selection!");
-  };
-});
+    selectBtn.onclick = () => {
+      alert("Thank you for your selection!");
+    };
+  });
+}
