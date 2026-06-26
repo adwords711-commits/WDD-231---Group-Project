@@ -1,26 +1,87 @@
 header {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 10px 20px;
     background-color: var(--accent1-color);
+    position: relative;
 }
 
 .logo {
     width: 100px;
     height: auto;
-    margin-bottom: 5px;
     transition: transform 0.3s ease;
 }
 .logo:hover {
     transform: scale(1.1);
 }
 
-nav {
+/* ── Hamburger button (mobile only) ── */
+.hamburger {
     display: flex;
     flex-direction: column;
-    gap: 5px;
-    align-items: center;
+    justify-content: space-between;
+    width: 28px;
+    height: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    z-index: 200;
+}
+
+.hamburger span {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 3px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Animate three bars → X when menu is open */
+.hamburger.open span:nth-child(1) {
+    transform: translateY(8.5px) rotate(45deg);
+}
+.hamburger.open span:nth-child(2) {
+    opacity: 0;
+    transform: scaleX(0);
+}
+.hamburger.open span:nth-child(3) {
+    transform: translateY(-8.5px) rotate(-45deg);
+}
+
+/* ── Nav: hidden on mobile, drops down when .open is toggled ── */
+nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--accent1-color);
+    z-index: 100;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+nav.open {
+    display: flex;
+}
+
+nav a {
+    padding: 15px 20px;
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 600;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    text-align: center;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+nav a:hover {
+    background-color: var(--primary-color);
+    color: #ffffff;
 }
 
 nav a:focus {

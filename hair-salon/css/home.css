@@ -12,10 +12,25 @@
         margin-bottom: 0;
     }
 
+    /* Hide hamburger on desktop */
+    .hamburger {
+        display: none;
+    }
+
+    /* Restore horizontal nav on desktop */
     nav {
+        display: flex;
         flex-direction: row;
         gap: 30px;
         align-items: center;
+        position: static;
+        box-shadow: none;
+        background-color: transparent;
+    }
+
+    nav a {
+        border-top: none;
+        padding: 8px 12px;
     }
 
     #content {
