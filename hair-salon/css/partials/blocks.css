@@ -94,7 +94,7 @@
     width: 90%;
     margin: 40px auto;
     padding: 20px;
-    background-color: var(--accent1-color);
+    background-color: #ffffff;
     border-radius: 10px;
     color: #ffffff;
 }
@@ -162,27 +162,20 @@
 }
 
 .service-card .select-service-btn {
-    display: inline-block; /* instead of none for testing */
+    display: inline-block;
     padding: 12px 25px;
-    background-color: var(--secondary-color);
-    color: #fff;
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
-    align-self: center;
-    position: relative;
     text-align: center;
 }
 
-.service-card .select-service-btn:hover {
-    background-color: var(--primary-color);
-}
 #feedback {
     display: none;
     padding: 10px;
     margin: 10px 0;
-    background-color: var(--accent1-color);
-    color: #fff;
+    background-color: #ffffff;
+    color: var(--primary-color);
     border-radius: 5px;
     text-align: center;
 }

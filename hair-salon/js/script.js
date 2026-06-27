@@ -178,7 +178,7 @@ const webpImage = service.image.replace(/\.(jpg|png)$/i, '.webp');
         </select>
         <p class="service-duration hidden"><strong>Duration:</strong> ${service.duration}</p>
         <p class="service-price hidden"><strong>Price:</strong> $0</p>
-        <button class="select-service-btn hidden">Select</button>
+        <button class="select-service-btn btn hidden">Select</button>
       </div>
     </section>
   `;

@@ -19,11 +19,34 @@ body {
 
 h1, h2, h3 {
     font-family: var(--heading-font);
+    color: var(--secondary-color);
 }
+
 
 p {
     margin: 10px 0;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     line-height: 1.7;
 }
-
+.btn {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+.btn:hover {
+    background-color: var(--accent1-color);
+    color: var(--white-color);
+    transform: translateY(-3px);
+}
+.btn:active {
+    transform: translateY(0px);
+}
+.btn:hover {
+    box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
+}
+.primary-heading {
+    color: var(--primary-color);
+}
