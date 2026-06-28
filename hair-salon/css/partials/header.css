@@ -4,7 +4,7 @@ header {
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    background-color: var(--accent1-color);
+    background-color: var(--accent2-color);
     position: relative;
 }
 
@@ -60,7 +60,7 @@ nav {
     top: 100%;
     left: 0;
     right: 0;
-    background-color: var(--accent1-color);
+    background-color: var(--accent2-color);
     z-index: 100;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
@@ -77,6 +77,7 @@ nav a {
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: background-color 0.2s ease, color 0.2s ease;
+    
 }
 
 nav a:hover {

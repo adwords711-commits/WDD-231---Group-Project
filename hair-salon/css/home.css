@@ -25,7 +25,7 @@
         align-items: center;
         position: static;
         box-shadow: none;
-        background-color: none;
+        background-color: var(--accent2-color)
     }
 
     nav a {

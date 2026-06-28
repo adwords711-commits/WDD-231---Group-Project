@@ -94,7 +94,7 @@
     width: 90%;
     margin: 40px auto;
     padding: 20px;
-    background-color: #ffffff;
+    background-color: var(--accent3-color);
     border-radius: 10px;
     color: #ffffff;
 }
