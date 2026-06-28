@@ -2,13 +2,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px;
+    padding: 0;
+    margin: 0;
     position: relative;
 }
 #hero-img {
     width: 100%;
     height: auto;
-    border-radius: 5px;
     object-fit: cover;
 }
 #hero-msg a {
@@ -23,8 +23,11 @@
 
 
 #hero-box {
+    padding: 0;
+    margin: 0;
     width: 100%;
 }
+
 
 #hero-msg {
     margin-top: -80px;
@@ -179,3 +182,4 @@
     border-radius: 5px;
     text-align: center;
 }
+
