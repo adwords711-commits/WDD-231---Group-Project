@@ -19,7 +19,7 @@ body {
 
 h1, h2, h3 {
     font-family: var(--heading-font);
-    color: var(--secondary-color);
+    color: var(--primary-color);
     font-size: 1.1rem;
 }
 
@@ -49,9 +49,7 @@ p {
 .btn:active {
     transform: translateY(0px);
 }
-.btn:hover {
-    box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
-}
+
 .primary-heading {
     color: var(--primary-color);
 }

@@ -210,4 +210,12 @@
     max-width: 1100px;   /* controls overall size */
     margin: 0 auto;      /* centers the grid */
     }
+    .contact-form-1 .btn {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    }
+    .contact-form-1 .btn:hover {
+    background-color: var(--secondary-color);
+    color: var(--white-color);
+    }
     }
