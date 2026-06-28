@@ -5,7 +5,7 @@ const services = [
   {
     name: "Women's Haircut",
     category: ["Cut"],
-    description: "Professional women's haircut tailored to your style.",
+    description: "Women's haircut tailored to your style.",
     duration: "45 min",
     image: "./images/womens-layered-haircut-style.jpg",
     rating: 5,
@@ -32,7 +32,7 @@ const services = [
   {
     name: "Men's Curly Hair",
     category: ["Curly"],
-    description: "Men's curly haircut tailored to your style.",
+    description: "Men's curly haircut tailored to your style and curl type.",
     duration: "45 min",
     image: "./images/mens-curly-hair-taper-fade.jpg",
     rating: 5,
