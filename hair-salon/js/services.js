@@ -6,6 +6,24 @@ const url = "./data/services.json";
 const serviceContainer = document.querySelector("#service-container");
 const categoryDropdown = document.querySelector("#category");
 
+// ── Local Storage Helper Functions ─────────────────────────
+
+// Save data to localStorage
+function setLocalStorage(key, data) {
+  localStorage.setItem(key, JSON.stringify(data));
+}
+
+// Get data from localStorage
+function getLocalStorage(key) {
+  const storedValue = localStorage.getItem(key);
+
+  if (storedValue) {
+    return JSON.parse(storedValue);
+  }
+
+  return null;
+}
+
 
 // Fetch services from JSON
 export async function loadServices() {
@@ -120,7 +138,6 @@ if (categoryDropdown) {
 
 }
 
-
 // Hair length and price selection
 if (serviceContainer) {
 
@@ -158,8 +175,21 @@ if (serviceContainer) {
 
 
     selectBtn.onclick = () => {
-      alert("Thank you for your selection!");
-    };
+
+  const servicePreference = {
+    service: serviceObj.name,
+    length: selectedLength,
+    price: dynamicPrice,
+    timestamp: new Date().toLocaleString()
+  };
+
+
+  localStorage.setItem(
+    "servicePreference",
+    JSON.stringify(servicePreference)
+  );
+  alert("Your service preference has been saved!");
+  };
 
   });
 

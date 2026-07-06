@@ -1,6 +1,3 @@
-console.log("JS file loaded");
-console.log("JS is connected");
-
 // ── Hamburger menu toggle ──────────────────────────────────────
 const hamburgerBtn = document.getElementById('hamburger'); //Referring to the HTML element
 const mainNav = document.querySelector('header nav'); //Look for a <nav> tag that is a descendant of a <header> tag
@@ -72,4 +69,5 @@ if (formElement && feedbackElement) {
   });
 
 }
+
 
