@@ -1,0 +1,65 @@
+[
+  {
+    "name": "Women's Haircut",
+    "category": ["Cut"],
+    "description": "Women's haircut tailored to your style.",
+    "duration": "45 min",
+    "image": "./images/womens-layered-haircut-style.jpg",
+    "rating": 5,
+    "price": { "short": 45, "mid": 60, "long": 75 }
+  },
+  {
+    "name": "Women's Curly Hair",
+    "category": ["Curly"],
+    "description": "Designed for curly and natural curly hair.",
+    "duration": "120 min",
+    "image": "./images/womens-natural-curly-hair-styling.jpg",
+    "rating": 5,
+    "price": { "short": 65, "mid": 95, "long": 125 }
+  },
+  {
+    "name": "Men's Haircut",
+    "category": ["Cut"],
+    "description": "Clean and modern men's haircut.",
+    "duration": "30 min",
+    "image": "./images/mens-modern-professional-haircut.jpg",
+    "rating": 4,
+    "price": { "short": 25, "mid": 40, "long": 55 }
+  },
+  {
+    "name": "Men's Curly Hair",
+    "category": ["Curly"],
+    "description": "Men's curly haircut tailored to your style and curl type.",
+    "duration": "45 min",
+    "image": "./images/mens-curly-hair-taper-fade.jpg",
+    "rating": 5,
+    "price": { "short": 65, "mid": 85, "long": 105 }
+  },
+  {
+    "name": "Hair Colour",
+    "category": ["Color"],
+    "description": "Full hair coloring with professional products.",
+    "duration": "1.5 hr",
+    "image": "./images/full-hair-coloring-dye-service.jpg",
+    "rating": 5,
+    "price": { "short": 80, "mid": 95, "long": 110 }
+  },
+  {
+    "name": "Balayage",
+    "category": ["Color"],
+    "description": "Natural-looking highlights with the balayage technique.",
+    "duration": "2 hr",
+    "image": "./images/blonde-balayage-highlights-service.jpg",
+    "rating": 5,
+    "price": { "short": 150, "mid": 225, "long": 350 }
+  },
+  {
+    "name": "Keratin Treatment",
+    "category": ["Treatment"],
+    "description": "Smooth and frizz-free hair with professional keratin treatment.",
+    "duration": "3.5 hr",
+    "image": "./images/hair-salon-ashburn-hero-welcome.jpg",
+    "rating": 5,
+    "price": { "short": 150, "mid": 170, "long": 190 }
+  }
+]
