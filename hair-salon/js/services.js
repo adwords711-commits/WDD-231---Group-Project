@@ -175,21 +175,13 @@ if (serviceContainer) {
 
 
     selectBtn.onclick = () => {
-
-  const servicePreference = {
-    service: serviceObj.name,
-    length: selectedLength,
-    price: dynamicPrice,
-    timestamp: new Date().toLocaleString()
-  };
-
-
-  localStorage.setItem(
-    "servicePreference",
-    JSON.stringify(servicePreference)
-  );
-  alert("Your service preference has been saved!");
-  };
+      const params = new URLSearchParams({
+        service: serviceObj.name,
+        length: selectedLength,
+        price: dynamicPrice
+      });
+      window.location.href = `appointment.html?${params}`;
+    };
 
   });
 

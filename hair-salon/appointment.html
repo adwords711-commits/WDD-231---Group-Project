@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Book an appointment at our Hair Salon">
+    <meta name="author" content="Jorge Gonzales">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book an Appointment</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="site-plan.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="js/script.js" defer></script>
+</head>
+<body class="about-me-page">
+    <div id="content">
+        <header>
+            <a id="logo_link" href="index.html">
+                <picture>
+                    <source srcset="images/jhovannas-hair-salon-logo.webp" type="image/webp">
+                    <img class="logo" src="images/jhovannas-hair-salon-logo.png" alt="Business Logo">
+                </picture>
+            </a>
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="services.html">Services</a>
+                <a href="appointment.html">Book</a>
+            </nav>
+        </header>
+
+        <h1 class="primary-heading">Book an Appointment</h1>
+
+        <main>
+            <section class="contact-form-1">
+                <h2 class="primary-heading">Your Appointment</h2>
+                <p id="booking-summary"></p>
+                <div id="booking-feedback"></div>
+
+                <form id="booking-form">
+                    <p>
+                        <label for="svc">Service:</label>
+                        <select id="svc" name="service" required>
+                            <option value="">--Choose a service--</option>
+                        </select>
+                    </p>
+                    <p>
+                        <label for="len">Hair length:</label>
+                        <select id="len" name="length" required>
+                            <option value="">--Choose--</option>
+                            <option value="short">Short Hair</option>
+                            <option value="mid">Mid Length</option>
+                            <option value="long">Long Hair</option>
+                        </select>
+                    </p>
+                    <!-- price is looked up from the data and rides along on submit -->
+                    <input type="hidden" id="prc" name="price">
+
+                    <p>
+                        <label for="cust-name">Name:</label>
+                        <input type="text" id="cust-name" name="name" placeholder="Your name" required>
+                    </p>
+                    <p>
+                        <label for="cust-email">Email:</label>
+                        <input type="email" id="cust-email" name="email" placeholder="name@example.com" required>
+                    </p>
+                    <p>
+                        <label for="appt-date">Date &amp; time:</label>
+                        <input type="text" id="appt-date" name="datetime" placeholder="Pick a date and time" required>
+                    </p>
+                    <p class="button-1">
+                        <button class="btn" type="submit">Request Booking</button>
+                    </p>
+                </form>
+            </section>
+        </main>
+
+        <footer>
+            <p><a href="https://www.jhovannashairsalon.com" title="Salon Website">www.jhovannashairsalon.com</a></p>
+            <p>© Jhovannas Hair Salon</p>
+            <div class="social">
+                <a href="#" aria-label="Visit our Instagram page"><img src="images/instagram_icon.svg" alt="Instagram Icon"></a>
+                <a href="#" aria-label="Visit our YouTube channel"><img src="images/youtube_icon.svg" alt="YouTube Icon"></a>
+                <a href="#" aria-label="Visit our Pinterest page"><img src="images/pinterest_icon.svg" alt="Pinterest Icon"></a>
+            </div>
+        </footer>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="js/booking.js"></script>
+</body>
+</html>
