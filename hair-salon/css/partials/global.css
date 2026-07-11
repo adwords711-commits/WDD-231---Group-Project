@@ -41,8 +41,8 @@ p {
     letter-spacing: 0.5px;
 }
 .btn:hover {
-    background-color: var(--accent1-color);
-    color: var(--black-color);
+    background-color: var(--primary-color);
+    color: var(--accent1-color);
     transform: translateY(-3px);
     box-shadow: 0 0 12px rgba(212, 175, 55, 0.6);
 }

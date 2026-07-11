@@ -9,7 +9,7 @@ header {
 }
 
 .logo {
-    width: 85px;
+    width: 95px;
     height: auto;
     transition: transform 0.3s ease;
 }
@@ -87,12 +87,12 @@ nav a:hover {
 }
 
 nav a:focus {
-    outline: 2px solid var(--accent1-color);
+    outline: 2px solid var(--secondary-color);
 }
 nav a:hover {
     background-color: transparent;
     text-decoration: underline;
-    color: var(--accent1-color);
+    color: var(--secondary-color);
     transform: scale(1.1);
 }
 nav a {

@@ -215,7 +215,7 @@
     color: var(--white-color);
     }
     .contact-form-1 .btn:hover {
-    background-color: var(--secondary-color);
-    color: var(--black-color);
+    background-color: var(--primary-color);
+    color: var(--accent1-color);
     }
     }
