@@ -129,7 +129,6 @@
 }
 
 .button-1 button:hover {
-    background-color: var(--secondary-color);
     color: var(--accent1-color);
 }
 
