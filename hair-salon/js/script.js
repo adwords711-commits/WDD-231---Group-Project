@@ -28,8 +28,7 @@ if (hamburgerBtn && mainNav) {
   });
 }
 
-// ── Contact Form and Local Storage
-
+// Contact Form
 // DOM elements
 const feedbackElement = document.getElementById("feedback");
 const formElement = document.querySelector(".contact-form-1 form");
@@ -47,20 +46,8 @@ if (formElement && feedbackElement) {
     const email = document.querySelector("#email").value.trim();
     const msg = document.querySelector("#msg").value.trim();
 
-    // Get existing messages from local storage, or start an empty array
-    let existingMessages = JSON.parse(localStorage.getItem("userMessages")) || [];
-
-    const userMessage = {
-      name: name,
-      timestamp: new Date().toLocaleString()
-    };
-
-    // Add the new message to the array and save it
-    existingMessages.push(userMessage);
-    localStorage.setItem("userMessages", JSON.stringify(existingMessages));
-
     feedbackElement.innerHTML =
-      "Hello " + name + "! Thank you for contacting us. We have received your message and will get back to you as soon as possible.";
+      "Thank you, your message has been received. We’ll be in touch soon."
     feedbackElement.style.display = "block";
     document.body.classList.toggle("moveDown");
 

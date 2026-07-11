@@ -24,7 +24,6 @@ function getLocalStorage(key) {
   return null;
 }
 
-
 // Fetch services from JSON
 export async function loadServices() {
   const response = await fetch(url);
@@ -40,7 +39,6 @@ export async function loadServices() {
   }
 }
 
-
 // Render service cards
 function renderServices(serviceList) {
   if (!serviceContainer) return;
@@ -51,7 +49,6 @@ function renderServices(serviceList) {
     serviceContainer.innerHTML += serviceTemplate(service);
   });
 }
-
 
 // Create service card HTML
 function serviceTemplate(service) {
@@ -83,7 +80,12 @@ function serviceTemplate(service) {
           Select hair length:
         </label>
 
-        <select class="hair-length" id="length-${service.name.replace(/\s/g, "")}">
+        <select
+          class="hair-length"
+          id="length-${service.name.replace(/\s/g, "")}"
+          required
+          oninvalid="this.setCustomValidity('Please choose a hair length.')"
+          onchange="this.setCustomValidity('')">
           <option value="">--Choose--</option>
           <option value="short">Short Hair</option>
           <option value="mid">Mid Length</option>
@@ -98,7 +100,7 @@ function serviceTemplate(service) {
           <strong>Price:</strong> $0
         </p>
 
-        <button class="select-service-btn btn hidden">
+        <button class="select-service-btn btn btn">
           Select
         </button>
 
@@ -107,18 +109,14 @@ function serviceTemplate(service) {
   `;
 }
 
-
-// Calculate dynamic price
+ // Calculate dynamic price
 function getPrice(service, length) {
   return service.price[length] || 0;
 }
 
-
 // Category filter
 if (categoryDropdown) {
-
   categoryDropdown.addEventListener("change", function () {
-
     const selectedCategory = categoryDropdown.value;
 
     let filteredServices =
@@ -135,16 +133,14 @@ if (categoryDropdown) {
     renderServices(filteredServices);
 
   });
-
 }
 
-// Hair length and price selection
+//   Hair length and price selection
 if (serviceContainer) {
 
   serviceContainer.addEventListener("change", function(e) {
 
     if (!e.target.classList.contains("hair-length")) return;
-
 
     const select = e.target;
     const serviceCard = select.closest(".service-card");
@@ -153,35 +149,47 @@ if (serviceContainer) {
     const durationElement = serviceCard.querySelector(".service-duration");
     const selectBtn = serviceCard.querySelector(".select-service-btn");
 
-
     const selectedLength = select.value;
-
-    if (!selectedLength) return;
-
 
     const serviceObj = services.find(
       service => service.name === serviceCard.querySelector("h2").textContent
     );
 
-
     const dynamicPrice = getPrice(serviceObj, selectedLength);
-
 
     priceElement.innerHTML = `<strong>Price:</strong> $${dynamicPrice}`;
 
     durationElement.classList.remove("hidden");
     priceElement.classList.remove("hidden");
     selectBtn.classList.remove("hidden");
+  });
 
+  serviceContainer.addEventListener("click", function(e) {
+    if (!e.target.classList.contains("select-service-btn")) return;
+    const selectBtn = e.target;
+    const serviceCard = selectBtn.closest(".service-card");
+    const select = serviceCard.querySelector(".hair-length");
 
-    selectBtn.onclick = () => {
-      const params = new URLSearchParams({
-        service: serviceObj.name,
-        length: selectedLength,
-        price: dynamicPrice
-      });
-      window.location.href = `appointment.html?${params}`;
-    };
+    if (!select.value) {
+      select.setCustomValidity("Please choose a hair length.");
+      select.reportValidity();
+
+      return;
+
+    }
+    select.setCustomValidity("");
+    const serviceObj = services.find(
+      service => service.name === serviceCard.querySelector("h2").textContent
+    );
+
+    const dynamicPrice = getPrice(serviceObj, select.value);
+    const params = new URLSearchParams({
+      service: serviceObj.name,
+      length: select.value,
+      price: dynamicPrice
+    });
+
+    window.location.href = `appointment.html?${params}`;
 
   });
 
