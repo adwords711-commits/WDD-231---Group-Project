@@ -193,3 +193,22 @@
 #booking-summary {
   animation: fadeIn 0.6s ease-out;
 }
+
+/* Toast notification — appears bottom-center, removes itself */
+.toast {
+    position: fixed;
+    bottom: 24px;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;
+    max-width: 90%;
+    padding: 12px 24px;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    z-index: 300;
+    animation: fadeIn 0.3s ease-out;   /* reuses the keyframes you already added */
+    transition: opacity 0.3s ease;
+}

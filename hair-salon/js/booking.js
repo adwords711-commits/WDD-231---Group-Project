@@ -2,12 +2,13 @@
 
 const params = new URLSearchParams(window.location.search);
 
-const serviceSelect = document.getElementById("svc");
-const lengthSelect  = document.getElementById("len");
-const priceInput    = document.getElementById("prc");
-const summary       = document.getElementById("booking-summary");
-const form          = document.getElementById("booking-form");
-const feedback      = document.getElementById("booking-feedback");
+const serviceSelect    = document.getElementById("svc");
+const lengthSelect     = document.getElementById("len");
+const priceInput       = document.getElementById("prc");
+const summary          = document.getElementById("booking-summary");
+const form             = document.getElementById("booking-form");
+const feedback         = document.getElementById("booking-feedback");
+const appointmentsList = document.getElementById("appointments-list");
 
 let services = [];
 
@@ -50,7 +51,7 @@ function updateSummary() {
   }
 }
 
-// ── Local storage: one draft object holds the whole booking ──
+// ── Local storage, key 1: the half-finished form (draft) ──
 function saveDraft() {
   localStorage.setItem("bookingDraft", JSON.stringify({
     service: serviceSelect.value,
@@ -63,6 +64,48 @@ function saveDraft() {
 function loadDraft() {
   return JSON.parse(localStorage.getItem("bookingDraft") || "null");
 }
+
+// ── Local storage, key 2: the confirmed bookings (a list) ──
+function loadAppointments() {
+  return JSON.parse(localStorage.getItem("appointments") || "[]");
+}
+
+function saveAppointments(list) {
+  localStorage.setItem("appointments", JSON.stringify(list));
+}
+
+// ── Fill the appointments card, dropping past-due ones ──
+function renderAppointments() {
+  // keep only future ones; the "T" makes the date parse the same in every browser
+  const upcoming = loadAppointments().filter(
+    a => new Date(a.datetime.replace(" ", "T")) > new Date()
+  );
+  saveAppointments(upcoming);   // past-due ones are now gone from storage too
+
+  if (upcoming.length === 0) {
+    appointmentsList.innerHTML = "<p>No upcoming appointments.</p>";
+    return;
+  }
+
+  // "2026-07-15 10:30" is zero-padded, so alphabetical order IS date order
+  upcoming.sort((a, b) => a.datetime.localeCompare(b.datetime));
+
+  appointmentsList.innerHTML = upcoming.map(a => `
+    <p>
+      <strong>${a.service}</strong> — ${a.length} hair — $${a.price}<br>
+      ${a.datetime}<br>
+      <button class="btn remove-appt" data-id="${a.id}" type="button">Remove</button>
+    </p>
+  `).join("");
+}
+
+// One listener on the container handles every Remove button, even ones created later
+appointmentsList.addEventListener("click", (e) => {
+  if (!e.target.classList.contains("remove-appt")) return;
+  const id = Number(e.target.dataset.id);
+  saveAppointments(loadAppointments().filter(a => a.id !== id));
+  renderAppointments();
+});
 
 // One listener covers every field: dropdowns and text inputs both fire "input"
 form.addEventListener("input", () => { updateSummary(); saveDraft(); });
@@ -79,15 +122,49 @@ flatpickr("#appt-date", {
   disable: [ d => d.getDay() === 0 ]   // grey out Sundays
 });
 
+// ── Toast: a small self-removing notification ──
+function showToast(message) {
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  toast.textContent = message;
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.style.opacity = "0";
+    setTimeout(() => toast.remove(), 300);
+  }, 4000);
+}
+
 // ── Submit ──
 form.addEventListener("submit", (e) => {
   e.preventDefault();
-  const name = document.getElementById("cust-name").value;
+
   const when = document.getElementById("appt-date").value;
-  feedback.textContent = `Thanks ${name}! ${serviceSelect.value} requested for ${when}.`;
-  localStorage.removeItem("bookingDraft"); // booked → draft no longer needed
+  // flatpickr sets the field readonly, and browsers skip `required` on
+  // readonly fields — so we enforce it here instead
+  if (!when) {
+    feedback.textContent = "Please pick a date and time for your appointment.";
+    return;
+  }
+
+  // confirmed → add it to the saved list
+  const appointments = loadAppointments();
+  appointments.push({
+    id: Date.now(),               // ms since 1970 — a free unique ID
+    service: serviceSelect.value,
+    length: lengthSelect.value,
+    price: priceInput.value,
+    datetime: when
+  });
+  saveAppointments(appointments);
+
+  const name = document.getElementById("cust-name").value;
+  showToast(`Thanks ${name}! ${serviceSelect.value} requested for ${when}.`);
+  localStorage.removeItem("bookingDraft"); // draft's job is done
   form.reset();
   updateSummary();
+  renderAppointments();
 });
 
 init();
+renderAppointments();
