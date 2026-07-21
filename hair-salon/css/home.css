@@ -132,7 +132,7 @@
         justify-content: center;
     }
 
-    .home-page-grid .contact-form-1 { {
+    .home-page-grid .contact-form-1 {
         grid-column: 1 / 11;
         grid-row: 3 / 4;
         width: 35%;
