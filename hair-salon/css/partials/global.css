@@ -8,6 +8,19 @@ body {
     font-family: var(--paragraph-font);
     line-height: 1.6;
     background-color: var(--white-color);
+    /* ↓ rescatado de site-plan.css — estaba activo en todas las páginas */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1.5em;        /* cómodo en móviles */
+    font-size: 18px;
+    text-align: center;
+}
+
+/* En pantallas grandes, recupera el espaciado amplio original */
+@media (min-width: 768px) {
+    body {
+        padding: 4em;
+    }
 }
 
 #content {
@@ -28,6 +41,7 @@ p {
     margin: 10px 0;
     font-size: 0.85rem;
     line-height: 1.7;
+    padding: 1em;   /* rescatado de site-plan.css — espaciado dentro de los campos del formulario, etc. */
 }
 .btn {
     padding: 8px 16px;
@@ -52,4 +66,3 @@ p {
 .primary-heading {
     color: var(--black-color);
 }
-

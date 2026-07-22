@@ -140,7 +140,7 @@
         padding: 20px;
         background-color: var(--accent3-color);
         border-radius: 20px;
-        color: var(--w);
+        color: var(--white-color);
         display: flex;
         flex-direction: column;
         gap: 8px;

@@ -33,21 +33,16 @@ if (hamburgerBtn && mainNav) {
 const feedbackElement = document.getElementById("feedback");
 const formElement = document.querySelector(".contact-form-1 form");
 
-console.log("Form:", formElement);
-console.log("Feedback:", feedbackElement);
-
 if (formElement && feedbackElement) {
   formElement.addEventListener("submit", function (e) {
     e.preventDefault();
-
-    console.log("Form submitted");
 
     const name = document.querySelector("#name").value.trim();
     const email = document.querySelector("#email").value.trim();
     const msg = document.querySelector("#msg").value.trim();
 
     feedbackElement.innerHTML =
-      "Thank you, your message has been received. We’ll be in touch soon."
+      "Thank you, your message has been received. We'll be in touch soon."
     feedbackElement.style.display = "block";
     document.body.classList.toggle("moveDown");
 
@@ -56,5 +51,3 @@ if (formElement && feedbackElement) {
   });
 
 }
-
-

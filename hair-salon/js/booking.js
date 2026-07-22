@@ -14,8 +14,18 @@ let services = [];
 
 // ── Load the same service list the Services page uses, then fill the form ──
 async function init() {
-  const res = await fetch("./data/services.json");
-  services = await res.json();
+  // Wrap the network call: if the JSON can't load, tell the user instead of
+  // failing silently with an empty, broken form.
+  try {
+    const res = await fetch("./data/services.json");
+    if (!res.ok) throw new Error(`Could not load services (${res.status})`);
+    services = await res.json();
+  } catch (err) {
+    feedback.textContent =
+      "Sorry — we couldn't load the service list. Please refresh the page and try again.";
+    console.error(err);
+    return;   // stop here; there's nothing to fill the form with
+  }
 
   services.forEach(s => {
     const opt = document.createElement("option");
@@ -111,7 +121,6 @@ appointmentsList.addEventListener("click", (e) => {
 form.addEventListener("input", () => { updateSummary(); saveDraft(); });
 
 // ── flatpickr: calendar limited to salon hours ──
-// ponytail: hours live in the picker UI, so no validation needed at submit
 flatpickr("#appt-date", {
   enableTime: true,
   minDate: "today",
@@ -126,6 +135,7 @@ flatpickr("#appt-date", {
 function showToast(message) {
   const toast = document.createElement("div");
   toast.className = "toast";
+  toast.setAttribute("role", "status");   // screen readers announce it politely
   toast.textContent = message;
   document.body.appendChild(toast);
 
@@ -143,7 +153,7 @@ form.addEventListener("submit", (e) => {
   // flatpickr sets the field readonly, and browsers skip `required` on
   // readonly fields — so we enforce it here instead
   if (!when) {
-    feedback.textContent = "Please pick a date and time for your appointment.";
+    showToast("Please pick a date and time for your appointment.");
     return;
   }
 
