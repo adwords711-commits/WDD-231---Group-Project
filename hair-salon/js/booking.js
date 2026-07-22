@@ -1,4 +1,5 @@
 // booking.js — pick or change a service, remember it across pages, take a booking request
+import flatpickr from "https://cdn.jsdelivr.net/npm/flatpickr/+esm"; // was a global from a <script> tag; now a real module import
 
 const params = new URLSearchParams(window.location.search);
 
@@ -14,18 +15,8 @@ let services = [];
 
 // ── Load the same service list the Services page uses, then fill the form ──
 async function init() {
-  // Wrap the network call: if the JSON can't load, tell the user instead of
-  // failing silently with an empty, broken form.
-  try {
-    const res = await fetch("./data/services.json");
-    if (!res.ok) throw new Error(`Could not load services (${res.status})`);
-    services = await res.json();
-  } catch (err) {
-    feedback.textContent =
-      "Sorry — we couldn't load the service list. Please refresh the page and try again.";
-    console.error(err);
-    return;   // stop here; there's nothing to fill the form with
-  }
+  const res = await fetch("./data/services.json");
+  services = await res.json();
 
   services.forEach(s => {
     const opt = document.createElement("option");
@@ -121,6 +112,7 @@ appointmentsList.addEventListener("click", (e) => {
 form.addEventListener("input", () => { updateSummary(); saveDraft(); });
 
 // ── flatpickr: calendar limited to salon hours ──
+// ponytail: hours live in the picker UI, so no validation needed at submit
 flatpickr("#appt-date", {
   enableTime: true,
   minDate: "today",
@@ -135,7 +127,6 @@ flatpickr("#appt-date", {
 function showToast(message) {
   const toast = document.createElement("div");
   toast.className = "toast";
-  toast.setAttribute("role", "status");   // screen readers announce it politely
   toast.textContent = message;
   document.body.appendChild(toast);
 
@@ -153,7 +144,7 @@ form.addEventListener("submit", (e) => {
   // flatpickr sets the field readonly, and browsers skip `required` on
   // readonly fields — so we enforce it here instead
   if (!when) {
-    showToast("Please pick a date and time for your appointment.");
+    feedback.textContent = "Please pick a date and time for your appointment.";
     return;
   }
 

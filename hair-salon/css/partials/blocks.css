@@ -212,3 +212,10 @@
     animation: fadeIn 0.3s ease-out;   /* reuses the keyframes you already added */
     transition: opacity 0.3s ease;
 }
+
+/* Contact form: keep field text readable (black, not white) */
+.contact-form-1 label,
+.contact-form-1 input,
+.contact-form-1 textarea {
+    color: var(--black-color);
+}

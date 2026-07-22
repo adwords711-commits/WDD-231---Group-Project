@@ -69,6 +69,7 @@ nav.open {
     display: flex;
 }
 
+/* ── Nav links (merged: was two `nav a` + two `nav a:hover` rules) ── */
 nav a {
     padding: 8px 12px;
     font-size: 0.95rem;
@@ -77,25 +78,16 @@ nav a {
     font-weight: 600;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
     text-align: center;
-    transition: background-color 0.2s ease, color 0.2s ease;
-    
+    transition: all 0.3s ease;
 }
 
 nav a:hover {
-    background-color: var(--primary-color);
-    color: #ffffff;
+    background-color: transparent;
+    text-decoration: underline;
+    color: var(--primary-color);   /* contrast fix: purple, 8.59:1 */
+    transform: scale(1.1);
 }
 
 nav a:focus {
     outline: 2px solid var(--secondary-color);
-}
-nav a:hover {
-    background-color: transparent;
-    text-decoration: underline;
-    color: var(--secondary-color);
-    transform: scale(1.1);
-}
-nav a {
-    text-decoration: none;
-    transition: all 0.3s ease;
 }
